@@ -13,7 +13,9 @@ function PokemonCard({ pokemon, onClick }) {
 
   return (
     <div className="pokemon-card" onClick={handleClick}>
-      <div className="pokemon-number">#{pokemonNumber}</div>
+      <div className="pokemon-number-container">
+        <div className="pokemon-number">#{pokemonNumber}</div>
+      </div>
       <div className="pokemon-image-container">
         <img 
           src={pokemonImage} 
@@ -24,7 +26,7 @@ function PokemonCard({ pokemon, onClick }) {
       </div>
       <h3 className="pokemon-name">{pokemonName}</h3>
       <p className="pokemon-details-text">Click para ver detalles</p>
-      <div className="pokeball-background">⚪</div>
+      <div className="pokeball-background"></div>
     </div>
   );
 }
