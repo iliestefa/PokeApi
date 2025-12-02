@@ -2,9 +2,9 @@ import { useState, useMemo } from 'react';
 import Header from './components/Header/Header';
 import PokemonGrid from './components/PokemonGrid/PokemonGrid';
 import { usePokemon } from './hooks/usePokemon';
-import './App.css';
+import './App.scss';
 
-function App() {
+const App = () => {
   const [searchValue, setSearchValue] = useState('');
   const { pokemonList, loading, error } = usePokemon(100, 0);
 
@@ -56,7 +56,7 @@ function App() {
       </main>
     </div>
   );
-}
+};
 
 export default App;
 

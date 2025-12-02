@@ -1,6 +1,7 @@
 import PokemonCard from '../PokemonCard/PokemonCard';
+import './PokemonGrid.scss';
 
-function PokemonGrid({ pokemonList, onPokemonClick }) {
+const PokemonGrid = ({ pokemonList, onPokemonClick }) => {
   if (pokemonList.length === 0) {
     return (
       <div className="no-results">
@@ -20,7 +21,7 @@ function PokemonGrid({ pokemonList, onPokemonClick }) {
       ))}
     </div>
   );
-}
+};
 
 export default PokemonGrid;
 

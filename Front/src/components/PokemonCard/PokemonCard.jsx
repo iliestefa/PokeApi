@@ -1,4 +1,6 @@
-function PokemonCard({ pokemon, onClick }) {
+import './PokemonCard.scss';
+
+const PokemonCard = ({ pokemon, onClick }) => {
   const pokemonNumber = pokemon.id;
   const pokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
   const pokemonImage = pokemon.sprites?.other?.['official-artwork']?.front_default || 
@@ -29,7 +31,7 @@ function PokemonCard({ pokemon, onClick }) {
       <div className="pokeball-background"></div>
     </div>
   );
-}
+};
 
 export default PokemonCard;
 

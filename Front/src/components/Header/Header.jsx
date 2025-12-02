@@ -1,4 +1,6 @@
-function Header({ searchValue, onSearchChange }) {
+import './Header.scss';
+
+const Header = ({ searchValue, onSearchChange }) => {
   return (
     <header className="header">
       <div className="header-content">
@@ -19,7 +21,7 @@ function Header({ searchValue, onSearchChange }) {
       </div>
     </header>
   );
-}
+};
 
 export default Header;
 

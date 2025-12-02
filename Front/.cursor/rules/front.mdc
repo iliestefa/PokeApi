@@ -53,4 +53,31 @@ The assistant must follow these guidelines when generating, editing or reviewing
    - Every component must include either prop-types or TypeScript types.
    - Missing prop validation should be suggested automatically.
 
+10. Component Function Syntax
+    - Components must use arrow function syntax: `const ComponentName = () => {}`
+    - Do NOT use function declarations: `function ComponentName() {}`
+    - Export components as default exports: `export default ComponentName`
+
+11. Styling Organization
+    - Each component must have its own SCSS file in the same directory as the component.
+    - Component SCSS files should be named: `ComponentName.scss`
+    - Import styles in the component file: `import './ComponentName.scss'` or `import styles from './ComponentName.module.scss'`
+    - Do NOT use a single global CSS file for all components. Each component should manage its own styles.
+    - Global styles should only be in `index.css` or `App.css` for base/reset styles and app-wide utilities.
+
+12. Constants Organization
+    - All constants must be defined in separate files, typically in a `constants` directory.
+    - Constants should be organized by domain or feature (e.g., `apiConstants.js`, `themeConstants.js`, `pokemonConstants.js`).
+    - Constants must use UPPER_SNAKE_CASE naming convention.
+    - All constants from a domain can be exported together in a single file using named exports.
+    - Create an `index.js` file in the constants directory to re-export all constants for easier imports.
+    - Example structure:
+      ```
+      constants/
+        apiConstants.js
+        themeConstants.js
+        index.js
+      ```
+    - Import constants: `import { API_BASE_URL, POKEMON_LIMIT } from './constants'`
+
 The assistant must warn or suggest improvements when any of these guidelines are violated.
