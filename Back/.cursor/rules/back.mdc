@@ -1,0 +1,89 @@
+---
+alwaysApply: true
+---
+1. Project Structure and Organization
+   - All Express routes must be separated into route files, not defined inside server.js or app.js.
+   - Each route file should only define endpoints; the logic must be placed in controllers.
+   - Controllers must stay small, readable, and free of business logic duplication.
+   - Business rules or integrations must be placed in service modules.
+   - Database logic must be abstracted into repositories or data-access helpers.
+
+2. Naming Conventions
+   - Files and folders use kebab-case (e.g., user-controller.js).
+   - Functions and variables use camelCase.
+   - Classes use PascalCase.
+   - Route endpoints must be descriptive and RESTful.
+
+3. Express Router and REST Standards
+   - Use express.Router() for all route modules.
+   - Follow REST conventions strictly:
+     - GET for fetching data
+     - POST for creating resources
+     - PUT/PATCH for updating
+     - DELETE for deleting
+   - Endpoints must avoid verbs in URL paths ("/users/create" is wrong; "/users" is correct).
+
+4. Error Handling
+   - All controllers must use try/catch blocks and forward errors to next().
+   - Create a centralized error handler middleware.
+   - Errors must return a consistent JSON structure: { message, statusCode, details? }.
+   - No raw error messages should be exposed in production.
+
+5. Async/Await Practices
+   - All async operations must use async/await, never .then()/.catch().
+   - Avoid deeply nested awaits; extract logic to helper functions when needed.
+
+6. Middleware Rules
+   - Middleware must be small and focused (authentication, validation, logging).
+   - Validation must be handled using a library such as Joi, Zod, or Yup.
+   - Never perform business logic inside middleware.
+
+7. Logging and Monitoring
+   - Use a centralized logger (winston, pino, or equivalent).
+   - console.log should be avoided except for debugging.
+   - Log only relevant and non-sensitive information.
+
+8. Security Practices
+   - Never store secrets directly in code; always use environment variables.
+   - Ensure helmet() is used for basic security.
+   - Disable x-powered-by in Express.
+   - Sanitize user input to avoid injection attacks.
+   - Use rate limiting on sensitive endpoints (auth, login).
+
+9. Performance and Scalability
+   - Avoid blocking operations on the event loop.
+   - Use streaming or pagination for large datasets.
+   - Cache frequently requested data using Redis or similar.
+   - Prefer stateless services; avoid in-memory persistence in production.
+
+10. Folder Structure Recommendation
+   - The assistant should encourage something like:
+
+     /src
+       /routes
+       /controllers
+       /services
+       /repositories
+       /middlewares
+       /utils
+       /config
+       app.js
+       server.js
+
+11. API Responses
+   - Responses must follow a consistent structure:
+     - success: { data, message }
+     - error: { message, statusCode, details? }
+   - Do not send raw errors, HTML errors, or stack traces to clients.
+
+12. Testing
+   - All business logic should be testable independently of Express.
+   - Use Jest or similar frameworks.
+   - Tests must avoid hitting real external services—mock everything.
+
+13. Dependencies and Code Hygiene
+   - Remove unused dependencies and imports automatically.
+   - The assistant should suggest replacing deprecated packages.
+   - Avoid large files; no file should exceed ~200 lines unless necessary.
+
+The assistant must warn or suggest improvements whenever any of these guidelines are violated.
