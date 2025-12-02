@@ -1,11 +1,13 @@
 import { useState, useMemo } from 'react';
 import Header from './components/Header/Header';
 import PokemonGrid from './components/PokemonGrid/PokemonGrid';
+import PokemonModal from './components/PokemonModal/PokemonModal';
 import { usePokemon } from './hooks/usePokemon';
 import './App.scss';
 
 const App = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
   const { pokemonList, loading, error } = usePokemon(100, 0);
 
   const filteredPokemonList = useMemo(() => {
@@ -20,7 +22,11 @@ const App = () => {
   }, [pokemonList, searchValue]);
 
   const handlePokemonClick = (pokemon) => {
-    console.log('Pokémon seleccionado:', pokemon);
+    setSelectedPokemon(pokemon);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPokemon(null);
   };
 
   if (loading) {
@@ -54,6 +60,12 @@ const App = () => {
           onPokemonClick={handlePokemonClick}
         />
       </main>
+      {selectedPokemon && (
+        <PokemonModal 
+          pokemon={selectedPokemon} 
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 };
