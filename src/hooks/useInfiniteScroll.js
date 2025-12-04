@@ -4,14 +4,14 @@ const useInfiniteScroll = (callback, hasMore, loading) => {
   const observer = useRef();
   
   const lastElementRef = useCallback((node) => {
-    if (loading) return;
-    
     if (observer.current) {
       observer.current.disconnect();
     }
     
+    if (!node) return;
+    
     observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasMore) {
+      if (entries[0].isIntersecting && hasMore && !loading) {
         callback();
       }
     }, {
@@ -19,9 +19,7 @@ const useInfiniteScroll = (callback, hasMore, loading) => {
       rootMargin: '100px'
     });
     
-    if (node) {
-      observer.current.observe(node);
-    }
+    observer.current.observe(node);
   }, [loading, hasMore, callback]);
 
   useEffect(() => {
@@ -36,4 +34,3 @@ const useInfiniteScroll = (callback, hasMore, loading) => {
 };
 
 export default useInfiniteScroll;
-

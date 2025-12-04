@@ -6,7 +6,7 @@ const Header = ({ searchValue, onSearchChange }) => {
       <div className="header-content">
         <div className="logo-container">
           <span className="logo-icon">⚡</span>
-          <h1 className="logo-text">Pokédex</h1>
+          <h1 className="logo-text">Pokedex</h1>
         </div>
         <div className="search-container">
           <input

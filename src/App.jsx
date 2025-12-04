@@ -11,8 +11,10 @@ const App = () => {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const { pokemonList, loading, loadingMore, error, hasMore, loadMore } = usePokemon();
 
+  const isSearching = searchValue.trim().length > 0;
+
   const filteredPokemonList = useMemo(() => {
-    if (!searchValue.trim()) {
+    if (!isSearching) {
       return pokemonList;
     }
     
@@ -20,9 +22,9 @@ const App = () => {
     return pokemonList.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(searchLower)
     );
-  }, [pokemonList, searchValue]);
+  }, [pokemonList, searchValue, isSearching]);
 
-  const lastElementRef = useInfiniteScroll(loadMore, hasMore, loadingMore);
+  const lastElementRef = useInfiniteScroll(loadMore, hasMore && !isSearching, loadingMore);
 
   const handlePokemonClick = (pokemon) => {
     setSelectedPokemon(pokemon);
@@ -62,8 +64,8 @@ const App = () => {
           pokemonList={filteredPokemonList} 
           onPokemonClick={handlePokemonClick}
           lastElementRef={lastElementRef}
-          loadingMore={loadingMore}
-          hasMore={hasMore}
+          loadingMore={loadingMore && !isSearching}
+          hasMore={hasMore && !isSearching}
         />
       </main>
       {selectedPokemon && (

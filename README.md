@@ -1,4 +1,4 @@
-# 🔴 Pokédex
+# 🔴 Pokedex
 
 Una aplicación web de Pokédex construida con React y Vite que consume la [PokéAPI](https://pokeapi.co/) para mostrar información detallada de los Pokémon.
 
