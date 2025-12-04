@@ -67,17 +67,13 @@ The assistant must follow these guidelines when generating, editing or reviewing
 
 12. Constants Organization
     - All constants must be defined in separate files, typically in a `constants` directory.
-    - Constants should be organized by domain or feature (e.g., `apiConstants.js`, `themeConstants.js`, `pokemonConstants.js`).
     - Constants must use UPPER_SNAKE_CASE naming convention.
     - All constants from a domain can be exported together in a single file using named exports.
-    - Create an `index.js` file in the constants directory to re-export all constants for easier imports.
     - Example structure:
       ```
       constants/
         apiConstants.js
         themeConstants.js
-        index.js
       ```
-    - Import constants: `import { API_BASE_URL, POKEMON_LIMIT } from './constants'`
 
 The assistant must warn or suggest improvements when any of these guidelines are violated.
