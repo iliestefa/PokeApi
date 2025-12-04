@@ -8,7 +8,8 @@ Una aplicación web de Pokédex construida con React y Vite que consume la [Pok�
 
 ## ✨ Características
 
-- 📋 **Lista de Pokémon**: Visualiza los primeros 100 Pokémon con sus imágenes y tipos
+- 📋 **Lista de Pokémon**: Visualiza todos los Pokémon con sus imágenes y tipos
+- ♾️ **Scroll infinito**: Carga automática de más Pokémon al hacer scroll (20 por página)
 - 🔍 **Búsqueda**: Filtra Pokémon por nombre en tiempo real
 - 📱 **Modal de detalles**: Muestra información completa del Pokémon seleccionado:
   - Imagen oficial
@@ -19,6 +20,7 @@ Una aplicación web de Pokédex construida con React y Vite que consume la [Pok�
   - Estadísticas base con barras visuales
 - 🎨 **Colores por tipo**: Cada tipo de Pokémon tiene su color distintivo
 - 📲 **Diseño responsive**: Adaptado para dispositivos móviles y desktop
+- ⚡ **Carga optimizada**: Sistema de paginación para mejor rendimiento
 
 ## 🛠️ Tecnologías
 

@@ -3,12 +3,13 @@ import Header from './components/Header/Header';
 import PokemonGrid from './components/PokemonGrid/PokemonGrid';
 import PokemonModal from './components/PokemonModal/PokemonModal';
 import { usePokemon } from './hooks/usePokemon';
+import useInfiniteScroll from './hooks/useInfiniteScroll';
 import './App.scss';
 
 const App = () => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const { pokemonList, loading, error } = usePokemon(100, 0);
+  const { pokemonList, loading, loadingMore, error, hasMore, loadMore } = usePokemon();
 
   const filteredPokemonList = useMemo(() => {
     if (!searchValue.trim()) {
@@ -20,6 +21,8 @@ const App = () => {
       pokemon.name.toLowerCase().includes(searchLower)
     );
   }, [pokemonList, searchValue]);
+
+  const lastElementRef = useInfiniteScroll(loadMore, hasMore, loadingMore);
 
   const handlePokemonClick = (pokemon) => {
     setSelectedPokemon(pokemon);
@@ -58,6 +61,9 @@ const App = () => {
         <PokemonGrid 
           pokemonList={filteredPokemonList} 
           onPokemonClick={handlePokemonClick}
+          lastElementRef={lastElementRef}
+          loadingMore={loadingMore}
+          hasMore={hasMore}
         />
       </main>
       {selectedPokemon && (
